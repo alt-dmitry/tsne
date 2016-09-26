@@ -109,6 +109,7 @@ int max_iter, int stop_lying_iter, int mom_switch_iter) {
     if(exact) printf("Done in %4.2f seconds!\nLearning embedding...\n", (float) (end - start) / CLOCKS_PER_SEC);
     else printf("Done in %4.2f seconds (sparsity = %f)!\nLearning embedding...\n", (float) (end - start) / CLOCKS_PER_SEC, (double) row_P[N] / ((double) N * (double) N));
     start = clock();
+    double prev_C = 99999.0;
 	for(int iter = 0; iter < max_iter; iter++) {
         
         // Compute (approximate) gradient
@@ -134,7 +135,7 @@ int max_iter, int stop_lying_iter, int mom_switch_iter) {
         if(iter == mom_switch_iter) momentum = final_momentum;
         
         // Print out progress
-        if(iter > 0 && iter % 50 == 0 || iter == max_iter - 1) {
+        if(iter > 0 && iter % 100 == 0 || iter == max_iter - 1) {
             end = clock();
             double C = .0;
             if(exact) C = evaluateError(P, Y, N);
@@ -146,6 +147,11 @@ int max_iter, int stop_lying_iter, int mom_switch_iter) {
                 printf("Iteration %d: error is %f (50 iterations in %4.2f seconds)\n", iter, C, (float) (end - start) / CLOCKS_PER_SEC);
             }
 			start = clock();
+			if (prev_C-C < 0.0001) {
+				print('Early stopping');
+				break
+			}
+			prev_C = C;
         }
     }
     end = clock(); total_time += (float) (end - start) / CLOCKS_PER_SEC;
