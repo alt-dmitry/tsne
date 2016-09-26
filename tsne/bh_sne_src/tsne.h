@@ -22,7 +22,7 @@ public:
     bool load_data(double** data, int* n, int* d, double* theta, double* perplexity);
     void save_data(double* data, int* landmarks, double* costs, int n, int d);
 
-    void symmetrizeMatrix(int** row_P, int** col_P, double** val_P, int N); // should be static?!
+    void symmetrizeMatrix(unsigned int** row_P, unsigned int** col_P, double** val_P, int N); // should be static!
 
     
 private:
