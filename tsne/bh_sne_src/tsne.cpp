@@ -13,8 +13,8 @@
 #include <stdio.h>
 #include <cstring>
 #include <time.h>
-#include "quadtree.h"
 #include "vptree.h"
+#include "sptree.h"
 #include "tsne.h"
 
 extern "C" {
