@@ -147,7 +147,7 @@ int max_iter, int stop_lying_iter, int mom_switch_iter) {
                 printf("Iteration %d: error is %f (50 iterations in %4.2f seconds)\n", iter, C, (float) (end - start) / CLOCKS_PER_SEC);
             }
 			start = clock();
-			if (prev_C-C < 0.0001) {
+			if (iter > stop_lying_iter+300 && prev_C-C < 0.0001) {
 				//printf('Early stopping');
 				break;
 			}
