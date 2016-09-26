@@ -107,9 +107,9 @@ int max_iter, int stop_lying_iter, int mom_switch_iter) {
     else {      for(int i = 0; i < row_P[N]; i++) val_P[i] *= 12.0; }
 
 	// Initialize solution (randomly)
-  if (skip_random_init != true) {
+  //if (skip_random_init != true) {
   	for(int i = 0; i < N * no_dims; i++) Y[i] = randn() * .0001;
-  }
+  //}
 
 	// Perform main training loop
     if(exact) printf("Input similarities computed in %4.2f seconds!\nLearning embedding...\n", (float) (end - start) / CLOCKS_PER_SEC);
