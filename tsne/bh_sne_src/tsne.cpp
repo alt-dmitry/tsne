@@ -148,7 +148,7 @@ int max_iter, int stop_lying_iter, int mom_switch_iter) {
             }
 			start = clock();
 			if (prev_C-C < 0.0001) {
-				print('Early stopping');
+				printf('Early stopping');
 				break;
 			}
 			prev_C = C;
